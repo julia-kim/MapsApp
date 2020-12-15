@@ -13,15 +13,24 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class MapController {
 	@Autowired
 	private MapService mapService;
-	@GetMapping(value = {"/home", "/"})
+	
+	@GetMapping(value = "/")
 	public String getDefaultMap(Model model) {
 		model.addAttribute("location", new Location());
 		return "index";
 	}
-	@PostMapping("/home")
+	
+	@PostMapping(value = "/")
 	public String getMapForLocation(Location location, Model model) {
 		mapService.addCoordinates(location);
 		model.addAttribute("location", location);
+		return "index";
+	}
+	
+	@GetMapping(value = "/random") 
+	public String getRandomLocation(Location location, Model model) {
+		mapService.getRandomCoordinates(location);
+		model.addAttribute(location);
 		return "index";
 	}
 }
