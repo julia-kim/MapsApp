@@ -1,4 +1,4 @@
-package com.tts.MapsApp;
+package com.tts.MapsApp.model;
 
 import lombok.Data;
 

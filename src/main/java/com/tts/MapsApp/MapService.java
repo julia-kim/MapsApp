@@ -7,6 +7,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.tts.MapsApp.model.AddressComponent;
+import com.tts.MapsApp.model.GeocodingResponse;
+import com.tts.MapsApp.model.Location;
+
 @Service
 public class MapService {
 	/*
