@@ -37,8 +37,6 @@ public class MapService {
 	public void randomizeCoordinates(Location location) {
 		Random rand = new Random();
 		try {
-			// String randomLat = String.valueOf(35.2270869);   // using Charlotte coords to test
-			// String randomLong = String.valueOf(-80.8431267);
 			String randomLat = String.valueOf((rand.nextDouble() * 180.0) - 90.0);
 			String randomLong = String.valueOf((rand.nextDouble() * 360.0) - 180.0);
 			location.setLat(randomLat);
