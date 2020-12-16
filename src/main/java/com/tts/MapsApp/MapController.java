@@ -27,9 +27,9 @@ public class MapController {
 		return "index";
 	}
 	
-	@GetMapping(value = "/random") 
+	@PostMapping(value = "/random") 
 	public String getRandomLocation(Location location, Model model) {
-		mapService.getRandomCoordinates(location);
+		mapService.randomizeCoordinates(location);
 		model.addAttribute(location);
 		return "index";
 	}

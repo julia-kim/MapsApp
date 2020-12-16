@@ -34,12 +34,15 @@ public class MapService {
 		}
 	}
 
-	public void getRandomCoordinates(Location location) {
+	public void randomizeCoordinates(Location location) {
+		Random rand = new Random();
 		try {
-			String randomLat = String.valueOf(35.2270869);   // using Charlotte coords to test
-			String randomLong = String.valueOf(-80.8431267); 
-			// String randomLat = String.valueOf((Math.random() * 180.0) - 90.0);
-			// String randomLong = String.valueOf((Math.random() * 360.0) - 180.0);
+			// String randomLat = String.valueOf(35.2270869);   // using Charlotte coords to test
+			// String randomLong = String.valueOf(-80.8431267);
+			String randomLat = String.valueOf((rand.nextDouble() * 180.0) - 90.0);
+			String randomLong = String.valueOf((rand.nextDouble() * 360.0) - 180.0);
+			location.setLat(randomLat);
+			location.setLng(randomLong);
 
 			String url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + randomLat + "," + randomLong
 					+ "&key=" + apiKey;
@@ -47,15 +50,13 @@ public class MapService {
 			GeocodingResponse response = restTemplate.getForObject(url, GeocodingResponse.class);
 			List<AddressComponent> acList = response.getResults().get(0).getAddressComponents();
 			for (int i = 0; i < acList.size(); i++) {
-				if (acList.get(i).getTypes().get(0).equalsIgnoreCase("locality")) {
+				if (acList.get(i).getTypes().get(0).equals("locality")) {
 					location.setCity(acList.get(i).getLongName());
 				}
-				if (acList.get(i).getTypes().get(0).equalsIgnoreCase("administrative_area_level_1")) {
+				if (acList.get(i).getTypes().get(0).equals("administrative_area_level_1")) {
 					location.setState(acList.get(i).getShortName());
 				}
 			}
-			System.out.println(response);
-
 		} catch (Exception ex) {
 			location.setLat("42.434722");
 			location.setLng("-83.985");
