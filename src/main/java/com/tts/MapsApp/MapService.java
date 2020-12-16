@@ -14,9 +14,8 @@ import com.tts.MapsApp.model.Location;
 @Service
 public class MapService {
 	/*
-	 * You can obtain an API key from
-	 * https://developers.google.com/maps/documentation/javascript/get-api-key. Copy
-	 * and paste your API key to application.properties.
+	 * You can obtain an API key from https://developers.google.com/maps/documentation/javascript/get-api-key.
+	 * Copy and paste your API key to application.properties.
 	 */
 	@Value("${api_key}")
 	private String apiKey;
